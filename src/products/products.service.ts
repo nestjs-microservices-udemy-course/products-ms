@@ -20,8 +20,13 @@ export class ProductsService extends PrismaClient implements OnModuleInit {
     const { page, limit } = paginationDto;
 
     const [totalPages, products] = await Promise.all([
-      this.product.count(),
+      this.product.count({
+        where: { deletedAt: null },
+      }),
       this.product.findMany({
+        where: {
+          deletedAt: null,
+        },
         skip: (page - 1) * limit,
         take: limit,
       }),

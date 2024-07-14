@@ -20,4 +20,6 @@ model Product {
   deletedAt   DateTime?
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
+
+  @@index([deletedAt])
 }
