@@ -8,7 +8,7 @@ interface EnvVars {
 
 const envsSchema = joi
   .object({
-    PORT: joi.number().default(4000),
+    PORT: joi.number().default(4001),
     DATABASE_URL: joi.string().required(),
   })
   .unknown(true);
