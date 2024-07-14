@@ -17,6 +17,7 @@ model Product {
   id          Int      @id @default(autoincrement())
   name        String
   price       Float
+  deletedAt   DateTime?
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 }

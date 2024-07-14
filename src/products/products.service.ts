@@ -41,7 +41,7 @@ export class ProductsService extends PrismaClient implements OnModuleInit {
 
   async findOne(id: number): Promise<Product> {
     const product = await this.product.findUnique({
-      where: { id },
+      where: { id, deletedAt: null },
     });
 
     if (!product) {
@@ -66,7 +66,8 @@ export class ProductsService extends PrismaClient implements OnModuleInit {
   async remove(id: number): Promise<Product> {
     await this.findOne(id);
 
-    return this.product.delete({
+    return this.product.update({
+      data: { deletedAt: new Date() },
       where: { id },
     });
   }
